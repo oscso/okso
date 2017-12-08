@@ -31,12 +31,11 @@ def hello_world():
 
 #如果当前这个文件是作为入口程序运行，那么就执行app.run()
 if __name__ == "__main__":
-	#app.run()
-	#启动一个应用服务器，来接受用户的请求
-	#while True：
-	#    listen() 一直在监听用户请求，死循环监听
+    #app.run()
+    #启动一个应用服务器，来接受用户的请求
+    #while True：
+    #    listen() 一直在监听用户请求，死循环监听
     app.run()
-
 ```
 
 
