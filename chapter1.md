@@ -71,10 +71,40 @@ def index(is_login):
             'age': 32
         }
         return  render_template('index.html',user=user)
-
+        
 ```
 
+## for
 
+页面代码
+
+```
+    {% for k,v in user.items() %} #遍历字典
+        <span>{{ k }} : {{ v }}</span><br/>
+    {% endfor %}
+
+    {% for website in website %} #遍历集合
+        <span>{{ website }}</span>
+    {% endfor %}
+```
+
+后台代码
+
+```
+@app.route('/<is_login>')
+def index(is_login):
+
+    if is_login == '1':
+        #字典
+        user = {
+            'username': '王二麻子',
+            'age': 18
+        }
+        #集合
+        websites = ['www.baidu.com','www.google.com']
+
+        return render_template('index.html',user = user,website = websites)
+```
 
 
 
