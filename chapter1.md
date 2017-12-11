@@ -71,7 +71,6 @@ def index(is_login):
             'age': 32
         }
         return  render_template('index.html',user=user)
-        
 ```
 
 ## for
@@ -83,7 +82,7 @@ def index(is_login):
         <span>{{ k }} : {{ v }}</span><br/>
     {% endfor %}
 
-    {% for website in website %} #遍历集合
+    {% for website in website %} #遍历列表
         <span>{{ website }}</span>
     {% endfor %}
 ```
@@ -100,13 +99,11 @@ def index(is_login):
             'username': '王二麻子',
             'age': 18
         }
-        #集合
+        #列表
         websites = ['www.baidu.com','www.google.com']
 
         return render_template('index.html',user = user,website = websites)
 ```
-
-
 
 
 
