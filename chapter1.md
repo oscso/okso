@@ -105,5 +105,66 @@ def index(is_login):
         return render_template('index.html',user = user,website = websites)
 ```
 
+### 案列
+
+for循环展示4本书
+
+前台代码
+
+```
+<table border="1">
+    <thead>
+        <th>书名</th>
+        <th>作者</th>
+        <th>价格</th>
+    </thead>
+    <tbody>
+        {% for book in books %}
+            <tr>
+                <td>{{ book.name }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.price }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+```
+
+后台代码
+
+```
+@app.route('/')
+def index():
+    books = [
+        {
+            'name':'红楼梦',
+            'author':'曹雪芹',
+            'price':109
+        },
+
+        {
+            'name':'水浒传',
+            'author':'施耐庵',
+            'price':188
+        },
+
+        {
+            'name':'西游记',
+            'author':'吴承恩',
+            'price':200
+        },
+
+        {
+            'name':'三国演义',
+            'author':'罗贯中',
+            'price':260
+        }
+
+
+    ]
+
+    return render_template('index.html',books=books)
+```
+
 
 
