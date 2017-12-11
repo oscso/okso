@@ -38,5 +38,45 @@ if __name__ == "__main__":
     app.run()
 ```
 
+## if
+
+页面代码：
+
+```
+    {% if  user and user.age > 18 %}
+        <a href = #>{{ user.username }}</a>
+        <a href = #>注销</a>
+    {% else %}
+        <a href = #>登陆</a>
+        <a href = #>注册</a>
+    {% endif %}
+```
+
+后台代码：
+
+```
+@app.route('/<is_login>')
+def index(is_login):
+
+    if is_login == '1':
+        user = {
+            'username': '王二麻子',
+            'age': 18
+        }
+
+        return render_template('index.html',user=user)
+    else:
+        user = {
+            'username': '江湖小子',
+            'age': 32
+        }
+        return  render_template('index.html',user=user)
+
+```
+
+
+
+
+
 
 
