@@ -231,15 +231,15 @@ def index():
 #### index.html
 
 ```
-{% extends 'base.html' %}
+{% extends 'base.html' %} #继承自base.html
 
-{% block one %}
+{% block one %} #添加块内容
     <h1 align = 'center'>你是这个世界上的最好的人</h1>
 {% endblock %}
 
-{% block title %}
+{% block title %} #块开始
     这是首页
-{% endblock %}
+{% endblock %} #块结束
 ```
 
 
