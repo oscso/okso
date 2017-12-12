@@ -247,7 +247,7 @@ def index():
 后台代码
 
 ```
-@app.route('/loginXXAAS/')
+@app.route('/loginXXAAS/') #这里的路径可以任意变换不影响
 def login():
     return render_template('login.html')
 ```
@@ -266,7 +266,6 @@ def login():
 <link rel="stylesheet" href="{{ url_for('static',filename='css/index.css') }}">
 <img src="{{ url_for('static',filename='images/abc.jpg') }}">
 <scripty src="{{ url_for('static',filename='js/index.js') }}">
-
 ```
 
 
