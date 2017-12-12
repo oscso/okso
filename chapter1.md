@@ -257,7 +257,13 @@ def login():
 这的login对应上面的login\(\)函数
 
 ```
-<a href="{{ url_for('login') }}">登录</a>   
+<a href="{{ url_for('login') }}">登录</a>
+```
+
+## 加载静态文件
+
+```
+<link rel="stylesheet" href="{{ url_for('static',filename='css/index.css') }}">
 ```
 
 
