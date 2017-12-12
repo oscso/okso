@@ -195,7 +195,7 @@ def index():
 
 ## 页面继承
 
-base.html
+#### base.html
 
 ```
 <!DOCTYPE html>
@@ -228,7 +228,7 @@ base.html
 </html>
 ```
 
-index.html
+#### index.html
 
 ```
 {% extends 'base.html' %}
