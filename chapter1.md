@@ -264,6 +264,9 @@ def login():
 
 ```
 <link rel="stylesheet" href="{{ url_for('static',filename='css/index.css') }}">
+<img src="{{ url_for('static',filename='images/abc.jpg') }}">
+<scripty src="{{ url_for('static',filename='js/index.js') }}">
+
 ```
 
 
