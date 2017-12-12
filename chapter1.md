@@ -193,5 +193,54 @@ def index():
 
 ![](/assets/import.png)
 
+## 页面继承
+
+base.html
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+
+<body>
+<table border="1">
+    <thead>
+        <th>书名</th>
+        <th>作者</th>
+        <th>价格</th>
+    </thead>
+    <tbody>
+            <tr>
+                <td>王站撒五</td>
+                <td>价格</td>
+                <td>8</td>
+            </tr>
+    </tbody>
+</table>
+
+{% block one %}{% endblock %}
+
+</body>
+</html>
+```
+
+index.html
+
+```
+{% extends 'base.html' %}
+
+{% block one %}
+    <h1 align = 'center'>你是这个世界上的最好的人</h1>
+{% endblock %}
+
+{% block title %}
+    这是首页
+{% endblock %}
+```
+
 
 
