@@ -166,5 +166,32 @@ def index():
     return render_template('index.html',books=books)
 ```
 
+## 继承
+
+```
+@app.route('/')
+def index():
+    class Person(object): #定义一个persion类
+        name = '张三'
+        age = 18
+
+    class Stu(Person): #继承自Persion类
+        pass
+
+    stu = Stu() #实例化一个对象
+    return render_template('index.html',stu=stu) #把对象一块传去
+```
+
+继承的也面代码：
+
+```
+ <td>{{ stu.name }}</td>
+ <td>{{ stu.age }}</td>
+```
+
+继承的显示效果
+
+![](/assets/import.png)
+
 
 
