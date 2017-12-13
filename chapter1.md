@@ -364,6 +364,14 @@ def index():
     print article1.content
 ```
 
+查询数据2
+
+```
+result = Article.query.filter(Article.title == 'aaa').first()
+print  'title: %s' %result.title
+print  'content: %s' %result.content
+```
+
 ## 
 
 
