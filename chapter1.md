@@ -268,5 +268,59 @@ def login():
 <scripty src="{{ url_for('static',filename='js/index.js') }}">
 ```
 
+## 数据库连接
+
+config.py  数据库配置信息
+
+```
+#dialect+driver://username:password@host:port/database
+
+DIALECT = 'mysql'
+DRIVER = 'mysqldb'
+USERNAME = 'root'
+PASSWORD = 'root'
+HOST = '127.0.0.1'
+PORT = '3306'
+DATABASE = 'db_demo1'
+
+SQLALCHEMY_DATABASE_URI = "{}+{}://{}:{}@{}:{}/{}?charset=utf8".format(DIALECT,DRIVER,USERNAME,PASSWORD,HOST,PORT,DATABASE)
+
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+```
+
+数据库连接成功与否测试condb.py
+
+```
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+import config
+
+app = Flask(__name__)
+app.config.from_object(config)
+db = SQLAlchemy(app)
+
+db.create_all()
+
+@app.route('/')
+def index():
+    return 'Hello World!'
+
+
+if __name__ == '__main__':
+    app.run()
+```
+
+测试结果如下表示成功
+
+```
+D:\PVenv\P27\Scripts\python.exe D:/ppy/dbcon/dbcon.py
+D:\PVenv\P27\lib\site-packages\sqlalchemy\engine\default.py:470: Warning: Incorrect string value: '\xD6\xD0\xB9\xFA\xB1\xEA...' for column 'VARIABLE_VALUE' at row 480
+  cursor.execute(statement, parameters)
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+127.0.0.1 - - [13/Dec/2017 13:04:42] "GET / HTTP/1.1" 200 -
+```
+
+
+
 
 
