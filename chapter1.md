@@ -354,6 +354,16 @@ def index():
     db.session.commit()  #提交
 ```
 
+## 查询数据
+
+```
+    #select *from article where title='aaa'  #这是对应的SQL语句
+    result = Article.query.filter(Article.title == 'aaa').all()
+    article1 =  result[0]
+    print article1.title
+    print article1.content
+```
+
 ## 
 
 
