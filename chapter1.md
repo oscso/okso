@@ -375,9 +375,13 @@ print  'content: %s' %result.content
 ## 修改数据
 
 ```
-article1 = Article.query.filter(Article.title == 'onetitle').first()
-article1.title = 'new title'
-db.session.commit()
+    # 改
+    # 1.先把你要更改的数据查询出来
+    # article1 = Article.query.filter(Article.title == 'onetitle').first()
+    # 2. 把这条数据，你需要修改的地方进行修改。
+    # article1.title = 'new title'
+    # 3. 做实务提交
+    # db.session.commit()
 ```
 
 
