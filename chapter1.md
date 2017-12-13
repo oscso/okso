@@ -344,6 +344,16 @@ class Article(db.Model):
 db.create_all() #这一步是执行上面的操作
 ```
 
+## 增加插入数据
+
+```
+@app.route('/')
+def index():
+    article1 = Article(title = 'aaa', content = 'bbb') #一条数据
+    db.session.add(article1) #事务 会话增加数据 
+    db.session.commit()  #提交
+```
+
 ## 
 
 
