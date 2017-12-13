@@ -372,7 +372,13 @@ print  'title: %s' %result.title
 print  'content: %s' %result.content
 ```
 
-## 
+## 修改数据
+
+```
+article1 = Article.query.filter(Article.title == 'onetitle').first()
+article1.title = 'new title'
+db.session.commit()
+```
 
 
 
