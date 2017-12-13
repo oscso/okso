@@ -384,5 +384,17 @@ print  'content: %s' %result.content
     # db.session.commit()
 ```
 
+## 删除记录
+
+```
+    #删除
+    #1.先把要删除的数据查询出来
+    article1 = Article.query.filter(Article.content == 'bbb').first()
+    #2. 把这条数据删除掉
+    db.session.delete(article1)
+    #3. 做实务提交
+    db.session.commit()
+```
+
 
 
