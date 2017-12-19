@@ -396,5 +396,80 @@ print  'content: %s' %result.content
     db.session.commit()
 ```
 
+## SQLAlchemy 外键和关系映射
+
+页面
+
+```
+#-*-encoding:utf8 -*-
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+import config
+
+
+app = Flask(__name__)
+app.config.from_object(config)
+db = SQLAlchemy(app)
+
+# #用户表
+# create table users (
+#     id int primary key autoincrement,
+#     username varchar(100) not null
+# )
+#
+# #文章表
+# create table article (
+#     id int primary key autoincrement,
+#     title varchar(100) not null,
+#     content text not null
+#     author_id int,
+#     foreign key 'aut' references 'users.id'  #关联外键
+# )
+
+class User(db.Model):
+    __tablename__ = 'user'
+    id = db.Column(db.Integer,primary_key=True,autoincrement=True)
+    username = db.Column(db.String(100),nullable=False)
+    password = db.Column(db.String(100),nullable=False)
+
+
+class Article(db.Model):
+    __tablename__ = 'article'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title = db.Column(db.String(100),nullable=False)
+    content = db.Column(db.Text,nullable=False)
+    author_id = db.Column(db.Integer,db.ForeignKey('user.id')) #创建并关联外键
+
+db.create_all()
+
+
+@app.route('/')
+def index():
+    return 'Hello World! 这是首页'
+
+if __name__ == '__main__':
+    app.run()
+```
+
+config文件的另外一种方式
+
+```
+#dialect+driver://username:password@host:port/database
+
+HOSTNAME = '127.0.0.1'
+PORT = '3306'
+#DIALECT = 'mysql'
+#DRIVER = 'mysqldb'
+USERNAME = 'root'
+PASSWORD = 'root'
+DATABASE = 'db_demo3'
+
+#SQLALCHEMY_DATABASE_URI = "{}+{}://{}:{}@{}:{}/{}?charset=utf8".format(DIALECT,DRIVER,USERNAME,PASSWORD,HOST,PORT,DATABASE)
+
+DB_URI = 'mysql+mysqldb://{}:{}@{}:{}/{}'.format(USERNAME,PASSWORD,HOSTNAME,PORT,DATABASE)
+SQLALCHEMY_DATABASE_URI = DB_URI
+SQLALCHEMY_TRACK_MODIFICATIONS = True
+```
+
 
 
