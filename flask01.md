@@ -473,3 +473,69 @@ SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 
 
+定义创建关系
+
+```
+class User(db.Model):
+    __tablename__ = 'user'
+    id = db.Column(db.Integer,primary_key=True,autoincrement=True)
+    username = db.Column(db.String(100),nullable=False)
+
+
+class Article(db.Model):
+    __tablename__ = 'article'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title = db.Column(db.String(100),nullable=False)
+    content = db.Column(db.Text,nullable=False)
+
+    author_id = db.Column(db.Integer,db.ForeignKey('user.id')) #创建并关联外键
+
+    author = db.relationship('User',backref = db.backref('articles')) #创建一个反向引用的关系
+
+db.create_all()
+```
+
+通过模型创建数据
+
+```
+    # #想要添加一篇文章，因为文章必须依赖而存在,所以得先添加一个用户。
+    # user1 = User(username = "zhiliao")
+    # db.session.add(user1)
+    # db.session.commit()
+
+    #添加文章
+    # article = Article(title = 'aaa',content = 'bbb',author_id = 1)
+    # db.session.add(article)
+    # db.session.commit()
+
+    #找出文章标题为aaa的作者原始方法
+    # article = Article.query.filter(Article.title == 'aaa').first()
+    # author_id = article.author_id
+    # user = User.query.filter(User.id == author_id).first()
+    # print  "username:  %s" % user.username
+
+    #定义了一种反向引用的关系后，另外一种添加数据的方法
+    # article = Article(title = 'aaa',content = 'bbb')
+    # article.author = User.query.filter(User.id == 1).first()  #通过上面定义的关系添加数据
+    # db.session.add(article)
+    # db.session.commit()
+
+    #找出文章标题为aaa的改善方法
+    # article= Article.query.filter(Article.title == 'aaa').first()
+    # print 'username: %s' % article.author.username
+
+    #在添加一篇文章
+    # article = Article(title = '111', content = '222', author_id = '1')
+    # db.session.add(article)
+    # db.session.commit()
+
+    #找到zhiliao用户写过的所有文章,这才是真正的ORM
+    user = User.query.filter(User.username == 'zhiliao').first()
+    result = user.articles
+    for article in result:
+        print '-' * 10
+        print article.title
+```
+
+
+
