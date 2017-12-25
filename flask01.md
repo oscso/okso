@@ -659,7 +659,7 @@ if __name__ == '__main__':
     #     foreign key `article_id` references `article.id`
     #     foreign key `tag_id` references `tag.id`
     # )
-
+    ##以下是对应的ORM类
     article_tag = db.Table('article_tag',
         db.Column('article_id',db.Integer,db.ForeignKey('article.id'),primary_key=True),
         db.Column('tag_id',db.Integer,db.ForeignKey('tag.id'),primary_key=True)    )
