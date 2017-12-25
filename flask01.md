@@ -677,5 +677,77 @@ if __name__ == '__main__':
 
     db.create_all()
 
+13分
+
+    #-*-encoding:utf8 -*-
+    from flask import Flask
+    from flask_sqlalchemy import SQLAlchemy
+    import config
+
+    app = Flask(__name__)
+    app.config.from_object(config)
+
+    db = SQLAlchemy(app)
+
+    #多对多对应的SQL
+    # create table article(
+    #     id int primary key autoincrment,
+    #     title varchar(100) not null
+    # )
+    #
+    # create table tag(
+    #     id int primary key autoincrment,
+    #     name varchar(50) not null
+    # )
+    #
+    # create table article_tag(
+    #     article_id int,
+    #     tag_id int,
+    #     primary key('article_id','tag_id'),
+    #     foreign key `article_id` references `article.id`
+    #     foreign key `tag_id` references `tag.id`
+    # )
+
+    article_tag = db.Table('article_tag',
+        db.Column('article_id',db.Integer,db.ForeignKey('article.id'),primary_key=True),
+        db.Column('tag_id',db.Integer,db.ForeignKey('tag.id'),primary_key=True)    )
+
+    class Article(db.Model):
+        __tablename__ = 'article'
+        id = db.Column(db.Integer,primary_key=True,autoincrement=True)
+        title = db.Column(db.String(100),nullable=False)
+
+    class Tag(db.Model):
+        __tablename__ = 'tag'
+        id = db.Column(db.Integer,primary_key=True,autoincrement=True)
+        name = db.Column(db.String(100),nullable=False)
+
+        Tags = db.relationship('Tag',secondaru=article_tag,backref=db.backref('articles'))
+
+    db.create_all()
+
+
+    @app.route('/')
+    def index():
+
+        article1 = Article(title='aaa')
+        article2 = Article(title='bbb')
+
+        tag1 = Tag(name = '111')
+        tag2 = Tag(name = '222')
+
+        db.session.add(article1)
+        db.session.add(article2)
+
+        db.session.add(tag1)
+        db.session.add(tag2)
+
+        db.session.commit()
+
+        return 'Hello World! 这是首页DBcon_2'
+
+    if __name__ == '__main__':
+        app.run()
+
 
 
