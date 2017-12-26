@@ -677,7 +677,7 @@ if __name__ == '__main__':
 
     db.create_all()
 
-多对多调试通过\(完整\)：
+多对多调试通过\(完整\)\(添加数据\)：
 
     #-*-encoding:utf8 -*-
     from flask import Flask
@@ -758,7 +758,7 @@ if __name__ == '__main__':
     if __name__ == '__main__':
         app.run()
 
-查询出上面添加进去的：
+查询出上面添加进去的\(查询数据\)：
 
 ```
     article1 = Article.query.filter(Article.title == 'aaa').first()
