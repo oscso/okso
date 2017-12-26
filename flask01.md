@@ -789,7 +789,7 @@ if __name__ == '__main__':
 
 ```
 #encoding: utf-8
-#file name:  db_managers.py
+#file name:  db_scripts.py
 
 from flask_script import Manager
 
