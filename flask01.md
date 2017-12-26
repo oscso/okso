@@ -758,5 +758,22 @@ if __name__ == '__main__':
     if __name__ == '__main__':
         app.run()
 
+查询出上面添加进去的：
+
+```
+    article1 = Article.query.filter(Article.title == 'aaa').first()
+    tags = article1.tags
+    for tag in tags:
+        print tag.name
+```
+
+查询出来的结果如下：
+
+```
+127.0.0.1 - - [26/Dec/2017 11:12:05] "GET / HTTP/1.1" 200 -
+111
+222
+```
+
 
 
