@@ -677,7 +677,7 @@ if __name__ == '__main__':
 
     db.create_all()
 
-13分
+多对多调试通过：
 
     #-*-encoding:utf8 -*-
     from flask import Flask
@@ -717,12 +717,14 @@ if __name__ == '__main__':
         id = db.Column(db.Integer,primary_key=True,autoincrement=True)
         title = db.Column(db.String(100),nullable=False)
 
+        #用中间表建立关系
+        tags = db.relationship('Tag',secondary=article_tag,backref=db.backref('articles'))
+
     class Tag(db.Model):
         __tablename__ = 'tag'
         id = db.Column(db.Integer,primary_key=True,autoincrement=True)
         name = db.Column(db.String(100),nullable=False)
 
-        Tags = db.relationship('Tag',secondaru=article_tag,backref=db.backref('articles'))
 
     db.create_all()
 
@@ -735,6 +737,13 @@ if __name__ == '__main__':
 
         tag1 = Tag(name = '111')
         tag2 = Tag(name = '222')
+
+        article1.tags.append(tag1)
+        article1.tags.append(tag2)
+
+        article2.tags.append(tag1)
+        article2.tags.append(tag2)
+
 
         db.session.add(article1)
         db.session.add(article2)
