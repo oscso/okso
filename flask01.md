@@ -785,7 +785,9 @@ if __name__ == '__main__':
 
 如果吧一些命令集中在一个文件中，那么在终端就需要输入一个父命令，比如“python manager.py db init ”
 
-代码：
+
+
+数据库操作脚本代码：
 
 ```
 #encoding: utf-8
@@ -803,6 +805,31 @@ def init():
 @DBmanager.command
 def migrate():
     print('data turn seccessed.')
+```
+
+
+
+manager.py
+
+```
+#encoding:utf8
+from flask_script import Manager
+from flask_script_de import app
+from db_scripts import DBmanager
+
+manager = Manager(app)
+
+#和数据库相关的操作，都放在一起
+
+@manager.command
+def runserver():
+    print 'service running ...'
+
+manager.add_command('db', DBmanager)
+
+
+if __name__ == '__main__':
+    manager.run()
 ```
 
 
