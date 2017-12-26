@@ -785,8 +785,6 @@ if __name__ == '__main__':
 
 如果吧一些命令集中在一个文件中，那么在终端就需要输入一个父命令，比如“python manager.py db init ”
 
-
-
 数据库操作脚本代码：
 
 ```
@@ -806,8 +804,6 @@ def init():
 def migrate():
     print('data turn seccessed.')
 ```
-
-
 
 manager.py
 
